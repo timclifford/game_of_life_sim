@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Game of Life - js</title>
+</head>
+<body>
+    <div>
+        <button id="run">Run simulation</button>
+        <button id="stop">Stop</button>
+    </div>
+
+    <canvas id="grid" width="800" height="800"></canvas>
+</body>
+<script src="index.js"></script>
+<script>
+    const canvas = document.querySelector("#grid");
+    const ctx = canvas.getContext("2d");
+
+    window.onload = () => {
+        const game = new GOL();
+        game.gameInitialise();
+        
+        let interval;
+
+        const run_button = document.getElementById("run");
+        run_button.onclick = () => {
+            // Run the next turn of the game every 500ms 
+            interval = setInterval(() => game.run(), 500);
+        };
+
+        const stop_button = document.getElementById("stop");
+        stop_button.onclick = () => {
+            clearInterval(interval);
+        }
+    };
+</script>
+
+</html>
